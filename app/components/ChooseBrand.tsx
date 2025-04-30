@@ -27,7 +27,11 @@ const ChooseBrand = () => {
         </ul>
 
         {brand && (
-          <motion.div initial={{ x: '-100vw' }} animate={{ x: 0 }}>
+          <motion.div
+            initial={{ x: '-100vw' }}
+            animate={{ x: 0 }}
+            transition={{ duration: 1.5, type: 'spring', stiffness: 520 }}
+          >
             <Link href={`base/${brand}`}>
               <button className='w-fit p-[10px] mt-[20px]  rounded-4xl bg-[#0c158d] cursor-pointer'>
                 see all cars

@@ -8,7 +8,9 @@ export default function Home() {
   return (
     <motion.main
       className='w-full h-[100dvh] flex justify-center items-center'
-      animate={{ rotateZ: 360, opacity: [0, 0.2], marginTop: -100 }}
+      initial={{ opacity: 0.1 }}
+      animate={{ rotateZ: 360, opacity: 1, marginTop: -100 }}
+      transition={{ duration: 0.5 }}
     >
       <div className='flex flex-col gap-[25px] items-center'>
         <motion.h1
