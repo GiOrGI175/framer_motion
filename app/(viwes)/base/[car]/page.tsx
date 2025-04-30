@@ -1,7 +1,10 @@
 import { cars } from '@/app/services/cars';
-import Link from 'next/link';
 
-export default function page() {
+export default function page({ params }: { params: { car: string } }) {
+  console.log(params.car);
+
+  const selectedCarBrand = cars.find((item) => item.car === params.car);
+
   return (
     <div className='w-full h-[100dvh] flex justify-center items-center'>
       <div>
@@ -10,10 +13,10 @@ export default function page() {
         </h2>
         <div>
           <ul className='py-[5px]'>
-            {cars.map((item) => (
-              <Link key={item.car} href={`/base/${item.car}`}>
-                <li className='py-[5px] font-medium'>{item.car}</li>
-              </Link>
+            {selectedCarBrand?.carsArr.map((car, index) => (
+              <li key={index} className='py-[5px] font-medium'>
+                {car.name} - {car.year} - ${car.price}
+              </li>
             ))}
           </ul>
         </div>

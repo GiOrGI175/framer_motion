@@ -1,14 +1,31 @@
-import Image from 'next/image';
+'use client';
+
+import Link from 'next/link';
+
+import { motion } from 'framer-motion';
 
 export default function Home() {
   return (
-    <main className='w-full h-[100dvh] flex justify-center items-center'>
+    <motion.main
+      className='w-full h-[100dvh] flex justify-center items-center'
+      animate={{ rotateZ: 360, opacity: [0, 0.2], marginTop: -100 }}
+    >
       <div className='flex flex-col gap-[25px] items-center'>
-        <h1 className='text-[50px]'>wellcome to main page</h1>
-        <button className='w-fit p-[25px] rounded-4xl flex items-center bg-[#2911a2] cursor-pointer'>
-          Create your pizza
-        </button>
+        <motion.h1
+          className='text-[20px]'
+          animate={{ fontSize: '50px', x: [100, 0], y: -20 }}
+        >
+          wellcome to main page
+        </motion.h1>
+        <Link href={'/base'}>
+          <motion.button
+            className='w-fit p-[25px] rounded-4xl flex items-center bg-[#2911a2] cursor-pointer'
+            animate={{ scale: [1.1, 1.5] }}
+          >
+            Choose a car brand
+          </motion.button>
+        </Link>
       </div>
-    </main>
+    </motion.main>
   );
 }
