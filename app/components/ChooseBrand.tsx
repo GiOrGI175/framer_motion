@@ -5,14 +5,33 @@ import { cars } from '../services/cars';
 import { useState } from 'react';
 import { animate, motion } from 'framer-motion';
 
+const leftSwipVariants = {
+  hidden: {
+    opacity: 0,
+    x: '-100vw',
+  },
+  visable: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 1.5,
+      type: 'spring',
+      stiffness: 520,
+    },
+  },
+};
+
 const ChooseBrand = () => {
   const [brand, setBrand] = useState('');
 
   return (
     <motion.div
-      initial={{ x: '-100vw' }}
-      animate={{ x: 0 }}
-      transition={{ duration: 1.5, type: 'spring', stiffness: 520 }}
+      // initial={{ x: '-100vw' }}
+      // animate={{ x: 0 }}
+      // transition={{ duration: 1.5, type: 'spring', stiffness: 520 }}
+      variants={leftSwipVariants}
+      initial='hidden'
+      animate='visable'
     >
       <h2 className='font-bold text-[20px] border-b-[1px] border-[black]'>
         Choose Your car brand
