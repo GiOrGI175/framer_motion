@@ -9,20 +9,26 @@ const ChooseBrand = () => {
   const [brand, setBrand] = useState('');
 
   return (
-    <div>
+    <motion.div
+      initial={{ x: '-100vw' }}
+      animate={{ x: 0 }}
+      transition={{ duration: 1.5, type: 'spring', stiffness: 520 }}
+    >
       <h2 className='font-bold text-[20px] border-b-[1px] border-[black]'>
         Choose Your car brand
       </h2>
       <div>
         <ul className='py-[5px]'>
           {cars.map((item) => (
-            <li
+            <motion.li
               key={item.car}
               className='py-[5px] font-medium cursor-pointer'
               onClick={() => setBrand(item.car)}
+              whileHover={{ scale: 1.2, originX: 0, color: 'yellow' }}
+              transition={{ type: 'spring', stiffness: 300 }}
             >
               {item.car}
-            </li>
+            </motion.li>
           ))}
         </ul>
 
@@ -30,6 +36,7 @@ const ChooseBrand = () => {
           <motion.div
             initial={{ x: '-100vw' }}
             animate={{ x: 0 }}
+            whileHover={{ scale: 1.6, originX: 0 }}
             transition={{ duration: 1.5, type: 'spring', stiffness: 520 }}
           >
             <Link href={`base/${brand}`}>
@@ -40,7 +47,7 @@ const ChooseBrand = () => {
           </motion.div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

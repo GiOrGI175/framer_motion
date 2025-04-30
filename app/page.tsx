@@ -22,7 +22,8 @@ export default function Home() {
         <Link href={'/base'}>
           <motion.button
             className='w-fit p-[25px] rounded-4xl flex items-center bg-[#2911a2] cursor-pointer'
-            animate={{ scale: [1.1, 1.5] }}
+            animate={{ scale: 1.2 }}
+            whileHover={{ scale: 1.6 }}
           >
             Choose a car brand
           </motion.button>
