@@ -4,10 +4,9 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 const buttonVariants = {
-  visavle: {
+  visable: {
     x: [-20, 20, -20, 20, 0],
   },
-  hover: { scale: 1.4, x: [-20, 20, -20, 20, 0] },
 };
 
 const HomePage = () => {
@@ -28,9 +27,16 @@ const HomePage = () => {
         <Link href={'/base'}>
           <motion.button
             className='w-fit p-[25px] rounded-4xl flex items-center bg-[#2911a2] cursor-pointer'
-            variants={buttonVariants}
-            animate='visavle'
-            whileHover='hover'
+            variants={{ visible: { x: [-20, 20, -20, 20, 0] } }}
+            animate='visible'
+            whileHover={{
+              scale: 1.4,
+              transition: {
+                repeat: Infinity,
+                repeatType: 'mirror',
+                duration: 0.6,
+              },
+            }}
           >
             Choose a car brand
           </motion.button>

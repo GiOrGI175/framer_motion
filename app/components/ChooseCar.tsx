@@ -1,40 +1,61 @@
 'use client';
 
 import { motion } from 'framer-motion';
-
-const liHoverVariant = {
-  hover: {
-    scale: 1.2,
-    originX: 0,
-    color: 'yellow',
-    transition: {
-      type: 'spring',
-      stiffness: 300,
-    },
-  },
-};
+import {
+  leftSwipVariants,
+  childrenVariants,
+  liHoverVariant,
+} from './ChooseBrand';
+import { useState } from 'react';
+import Link from 'next/link';
 
 const ChooseCar = ({ selectedCarBrand }) => {
+  console.log(selectedCarBrand, 'selectedCarBrand');
+
+  const [carModel, setcarModel] = useState('');
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
   return (
-    <div>
+    <motion.div variants={leftSwipVariants} initial='hidden' animate='visible'>
       <h2 className='font-bold text-[20px] border-b-[1px] border-[black]'>
         Choose Your car brand
       </h2>
-      <div>
+      <motion.div variants={childrenVariants}>
         <ul className='py-[5px]'>
           {selectedCarBrand?.carsArr.map((car, index) => (
             <motion.li
-              key={index}
+              key={car.name}
               className='py-[5px] font-medium cursor-pointer'
+              onClick={() => {
+                setcarModel(car.name);
+                setSelectedIndex(index);
+              }}
               variants={liHoverVariant}
+              initial='initial'
               whileHover='hover'
+              animate={selectedIndex === index ? 'selected' : 'initial'}
             >
               {car.name} - {car.year} - ${car.price}
             </motion.li>
           ))}
         </ul>
-      </div>
-    </div>
+
+        {carModel && (
+          <motion.div
+            initial={{ x: '-100vw' }}
+            animate={{ x: 0 }}
+            whileHover={{ scale: 1.6, originX: 0 }}
+            transition={{ duration: 1.5, type: 'spring', stiffness: 520 }}
+          >
+            <Link href={`/base/${selectedCarBrand.car}/${carModel}`}>
+              <button className='w-fit p-[10px] mt-[20px]  rounded-4xl bg-[#0c158d] cursor-pointer'>
+                see car
+              </button>
+            </Link>
+          </motion.div>
+        )}
+      </motion.div>
+    </motion.div>
   );
 };
 
