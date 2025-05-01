@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { cars } from '../services/cars';
 import { useState } from 'react';
-import { animate, motion } from 'framer-motion';
+import { animate, hover, motion } from 'framer-motion';
 
 const leftSwipVariants = {
   hidden: {
@@ -17,6 +17,31 @@ const leftSwipVariants = {
       duration: 1.5,
       type: 'spring',
       stiffness: 520,
+      damping: 8,
+      when: 'beforeChildren',
+      // when: 'afterChildren',
+      staggerChildren: 0.5,
+    },
+  },
+};
+
+const childrenVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visable: {
+    opacity: 1,
+  },
+};
+
+const liHoverVariant = {
+  hover: {
+    scale: 1.2,
+    originX: 0,
+    color: 'yellow',
+    transition: {
+      type: 'spring',
+      stiffness: 300,
     },
   },
 };
@@ -36,15 +61,15 @@ const ChooseBrand = () => {
       <h2 className='font-bold text-[20px] border-b-[1px] border-[black]'>
         Choose Your car brand
       </h2>
-      <div>
+      <motion.div variants={childrenVariants}>
         <ul className='py-[5px]'>
           {cars.map((item) => (
             <motion.li
               key={item.car}
               className='py-[5px] font-medium cursor-pointer'
               onClick={() => setBrand(item.car)}
-              whileHover={{ scale: 1.2, originX: 0, color: 'yellow' }}
-              transition={{ type: 'spring', stiffness: 300 }}
+              variants={liHoverVariant}
+              whileHover='hover'
             >
               {item.car}
             </motion.li>
@@ -65,7 +90,7 @@ const ChooseBrand = () => {
             </Link>
           </motion.div>
         )}
-      </div>
+      </motion.div>
     </motion.div>
   );
 };
