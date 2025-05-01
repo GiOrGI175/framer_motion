@@ -6,10 +6,23 @@ import {
   childrenVariants,
   liHoverVariant,
 } from './ChooseBrand';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 
-const ChooseCar = ({ selectedCarBrand }) => {
+type carsArrT = {
+  name: string;
+  year: string;
+  price: string;
+};
+
+type ChooseCarPrpsT = {
+  selectedCarBrand: {
+    car: string;
+    carsArr: carsArrT[];
+  };
+};
+
+const ChooseCar: React.FC<ChooseCarPrpsT> = ({ selectedCarBrand }) => {
   console.log(selectedCarBrand, 'selectedCarBrand');
 
   const [carModel, setcarModel] = useState('');
