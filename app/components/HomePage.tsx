@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import Loader from './Loader';
+import CycleLoader from './CycleLoader';
 
 const buttonVariants = {
   visable: {
@@ -14,10 +16,10 @@ const HomePage = () => {
     <motion.main
       className='w-full h-[100dvh] flex justify-center items-center'
       initial={{ opacity: 0.1 }}
-      animate={{ rotateZ: 360, opacity: 1, marginTop: -100 }}
+      animate={{ rotateZ: 360, opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div className='flex flex-col gap-[25px] items-center'>
+      <div className='w-fit flex flex-col gap-[25px] items-center'>
         <motion.h1
           className='text-[20px]'
           animate={{ fontSize: '50px', x: [100, 0], y: -20 }}
@@ -41,6 +43,11 @@ const HomePage = () => {
             Choose a car brand
           </motion.button>
         </Link>
+
+        <>
+          <CycleLoader />
+          <p className='text-[20px]'>Cycle Loader </p>
+        </>
       </div>
     </motion.main>
   );
