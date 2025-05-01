@@ -19,7 +19,7 @@ const HomePage = () => {
         >
           wellcome to main page
         </motion.h1>
-        <Link href={'/base'}>
+        <Link href='/base'>
           <motion.button
             className='w-fit p-[25px] rounded-4xl flex items-center bg-[#2911a2] cursor-pointer'
             variants={{ visible: { x: [-20, 20, -20, 20, 0] } }}
