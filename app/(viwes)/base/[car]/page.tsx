@@ -1,8 +1,14 @@
 import ChooseCar from '@/app/components/ChooseCar';
 import { cars } from '@/app/services/cars';
 
-export default async function page({ params }: { params: { car: string } }) {
-  const selectedCarBrand = cars.find((item) => item.car === params.car);
+type Params = Promise<{
+  car: string;
+}>;
+
+export default async function page({ params }: { params: Params }) {
+  const { car } = await params;
+
+  const selectedCarBrand = cars.find((item) => item.car === car);
 
   console.log(selectedCarBrand, 'selectedCarBrand');
 

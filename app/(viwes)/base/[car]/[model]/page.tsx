@@ -1,11 +1,15 @@
 import CarModel from '@/app/components/CarModel';
 
-export default function page({ params }: { params: { model: string } }) {
-  console.log(params.model, 'params.model');
+type Params = Promise<{
+  model: string;
+}>;
+
+export default async function Page({ params }: { params: Params }) {
+  const { model } = await params;
 
   return (
     <div className='w-full h-[100dvh] flex justify-center items-center'>
-      <CarModel model={params.model} />
+      <CarModel model={model} />
     </div>
   );
 }

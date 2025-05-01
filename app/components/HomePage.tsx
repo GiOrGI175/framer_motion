@@ -2,14 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import Loader from './Loader';
 import CycleLoader from './CycleLoader';
-
-const buttonVariants = {
-  visable: {
-    x: [-20, 20, -20, 20, 0],
-  },
-};
 
 const HomePage = () => {
   return (
